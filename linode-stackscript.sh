@@ -14,7 +14,7 @@ echo $HOSTNAME > /etc/hostname
 echo $IPADDR $HOSTNAME $FQDN >> /etc/hosts
 
 # get and execute the puppet script
-wget https://raw.github.com/lesscoding/lesscoding_puppet_scripts/master/linode-bootstrap.sh --output-file=/opt/linode-bootstrap.sh
+wget https://raw.github.com/lesscoding/lesscoding_puppet_scripts/master/linode-bootstrap.sh --output-document=/opt/linode-bootstrap.sh
 chmod +x /opt/linode-bootstrap.sh
 
 ./opt/linode-bootstrap.sh
