@@ -17,4 +17,4 @@ echo $IPADDR $HOSTNAME $FQDN >> /etc/hosts
 wget https://raw.github.com/lesscoding/lesscoding_puppet_scripts/master/linode-bootstrap.sh --output-document=/opt/linode-bootstrap.sh
 chmod +x /opt/linode-bootstrap.sh
 
-./opt/linode-bootstrap.sh
+. /opt/linode-bootstrap.sh > bootstrap.log

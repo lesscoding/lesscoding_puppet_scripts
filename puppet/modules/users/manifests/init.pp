@@ -25,10 +25,10 @@ class users {
      require => Group['emson'],
   }
 
-  ssh_authorized_key { "emson":
+  ssh_authorized_key { "ben@lesscoding.com":
     ensure => "present",
     type => "ssh-rsa",
-    key => "AAAAB3NzaC1yc2EAAAADAQABAAABAQDLYkj+YFIorwYEQjKfq4IQnPv5YeNL2J+jP8n111fdMSNbBgnpGbtxaYrqe/TSQpqFfGwd+nSUfl6kz+Ya/qIcZULyN6ycG2PV1VCtfhhHouwj8u3Q2fw8vEaUHd0oo03i0ugFoAVoo3kA5PS9VIItxV93yBXMt7GpmqxzQbi/rMed+yM1YlQurd0UwvJMLSrIllr/YLIBTT7QHRmq9lSEz4+bOdt0SIBRW6n5ZiZoSgPt/EjQrYTjJ8lC/+NekT6vQvO2Ot+s1BAyIzQbRoBmPoFU1tP4y14eLiXLH+XLR3W/T5XfH2mVTPlpcNNzwwP6lo05St61IEz4otTc23rj",
+    key => "AAAAB3NzaC1yc2EAAAADAQABAAABAQCtJc25smfKdZHLb90MeWcXoTbTmJ+4yiGtiEE8aaxkP5tbYS4fhEAs3Hk3PhR0lQ9f/vZA/yqL92zPOzKF8igL925xU2727Yju65bXM327+JO24q0+L3SNH5lFNqaEx0EICJH4FMsIcyARz89n4+fEueuqT9fFo00TMiNLuDs2bSOtIqMSgn1LcMC62hc2E9I38fo9M3l6uBwp+w5XvuapuoCzeRrifblOgNKVVWHiXxHXe0QzgRwZsgzxVcFCP92j3yIcq5LSDJEqxmwOrLEQCPfY02e1i/u1hT4JOjL36Nbx12aEkJyvdMOtsVttRrddMQ/fyEDDlb5QIhArObLX",
     user => "emson"
   }
 
