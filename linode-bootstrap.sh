@@ -12,13 +12,18 @@ sudo apt-get upgrade -y --show-upgrade
 # install basic packages
 echo "Installing packages..."
 sudo apt-get install -y curl git-core libcurl4-gnutls-dev libreadline-dev libssl-dev libyaml-dev \
-                        zlib1g-dev build-essential python-software-properties ruby1.9.3 puppet
+                        zlib1g-dev build-essential python-software-properties ruby1.9.3 rubygems \
+                        libmysqlclient-dev puppet
+echo "Linking Ruby1.9.3..."
+ln -sf /usr/bin/ruby1.9.3 /etc/alternatives/ruby
+ln -sf /usr/bin/gem1.9.3 /etc/alternatives/gem
+
 # get the puppet scripts
 # TODO get these from github
 echo "Get puppet scripts..."
 rm -rf /tmp/provision
 cd /tmp && git clone git://github.com/lesscoding/lesscoding_puppet_scripts.git provision
-sudo cp -r /tmp/provision/puppet /etc
+sudo cp -rf /tmp/provision/puppet /etc
 
 # run the puppet scripts
 echo "Execute puppet scripts..."
