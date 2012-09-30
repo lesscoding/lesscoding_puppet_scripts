@@ -7,3 +7,6 @@ include ntp
 include firewall
 include users
 include newton
+
+include nginx
+
