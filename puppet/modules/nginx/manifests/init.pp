@@ -5,6 +5,13 @@ class nginx {
       ensure => present,
   }
 
+  # remove the default nginx page
+  file { "/etc/nginx/sites-enabled/default":
+    ensure => absent,
+    require => Package["nginx"],
+  }
+
+  # add our global nginx.conf file
   file { "/etc/nginx/nginx.conf":
     owner   => root,
     group   => root,
@@ -13,6 +20,7 @@ class nginx {
     require => Package["nginx"],
   }
 
+  # ensure that nginx is on and running
   service { "nginx":
     ensure => running,
     enable => true,

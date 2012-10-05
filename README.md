@@ -14,6 +14,11 @@ Start your Vagrant server:
     vm$ cd /tmp/provision
     vm$ . ./linode-bootstrap.sh
 
+## Wordpress
+
+<http://puppetlabs.com/blog/using-puppet-modules-to-install-and-manage-wordpress/>
+
+
 ## TODO
 
 Script to:
