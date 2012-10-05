@@ -29,10 +29,6 @@ class newton {
       ensure  => installed,
   }
 
-  file { "/etc/profile":
-    ensure => present,
-    source => "export EDITOR=vim"
-  }
 
   package {
     "bundler":
