@@ -16,12 +16,14 @@ Start your Vagrant server:
 
 ## Wordpress
 
-<https://github.com/jonhadfield/puppet-wordpress>
-
-
+<https://github.com/jonhadfield/puppet-wordpress
 
 <http://puppetlabs.com/blog/using-puppet-modules-to-install-and-manage-wordpress/>
 
+
+#### Setup FastCGI First
+
+<http://library.linode.com/web-servers/nginx/php-fastcgi/ubuntu-11.04-natty>
 
 
 ## TODO

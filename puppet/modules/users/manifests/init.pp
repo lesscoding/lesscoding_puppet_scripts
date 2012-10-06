@@ -40,4 +40,12 @@ class users {
     require => User['emson'],
   }
 
+  # install vimben
+  exec {
+    "vimben":
+      command => 'curl -Lo- https://raw.github.com/emson/vimben/master/bootstrap.sh | bash',
+      require => User['emson'],
+  }
+
+
 }

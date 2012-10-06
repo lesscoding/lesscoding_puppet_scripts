@@ -18,7 +18,6 @@ function parse_git_branch_appended {
 }
 
 
-PS1="\[\033[0m\]\W:\[\033[0;33m\]\$(parse_git_branch_appended)\[\033[0;32m\]\$
-"
+PS1="\$(parse_git_branch_appended)\$ "
 
 

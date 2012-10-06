@@ -19,6 +19,11 @@ class newton {
   }
 
   package {
+    "rake":
+      provider => gem,
+  }
+
+  package {
     "bundler":
       provider => gem,
   }
