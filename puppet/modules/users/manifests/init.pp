@@ -32,4 +32,12 @@ class users {
     user => "emson"
   }
 
+  file { '/home/emson/.bash_profile':
+    owner => 'emson',
+    group => 'emson',
+    mode => 644,
+    source => "puppet:///modules/users/bash_profile",
+    require => User['emson'],
+  }
+
 }

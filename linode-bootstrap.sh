@@ -13,7 +13,7 @@ sudo apt-get upgrade -y --show-upgrade
 echo "****** Installing packages..."
 sudo apt-get install -y curl git-core libcurl4-gnutls-dev libreadline-dev libssl-dev libyaml-dev \
                         zlib1g-dev build-essential python-software-properties ruby1.9.3 rubygems \
-                        libmysqlclient-dev puppet
+                        libmysqlclient-dev puppet php5-cli php5-cgi psmisc spawn-fcgi
 echo "****** Linking Ruby1.9.3..."
 sudo ln -sf /usr/bin/ruby1.9.3 /etc/alternatives/ruby
 sudo ln -sf /usr/bin/gem1.9.3 /etc/alternatives/gem

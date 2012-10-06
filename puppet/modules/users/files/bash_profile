@@ -1,0 +1,24 @@
+# path settings
+PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+
+export EDITOR='vim'
+
+# ===== aliases =====
+
+alias bi='bundle install'
+alias be='bundle exec'
+alias b='bundle'
+
+# ====== functions =====
+
+# Git branch in prompt
+function parse_git_branch_appended {
+  ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+  echo -ne "("${ref#refs/heads/}")"
+}
+
+
+PS1="\[\033[0m\]\W:\[\033[0;33m\]\$(parse_git_branch_appended)\[\033[0;32m\]\$
+"
+
+
