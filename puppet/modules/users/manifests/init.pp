@@ -41,11 +41,11 @@ class users {
   }
 
   # install vimben
-  exec {
-    "vimben":
-      command => 'curl -Lo- https://raw.github.com/emson/vimben/master/bootstrap.sh | bash | 0',
-      require => User['emson'],
-  }
+  # exec {
+  #   "vimben":
+  #     command => 'curl -Lo- https://raw.github.com/emson/vimben/master/bootstrap.sh | bash | 0',
+  #     require => User['emson'],
+  # }
 
 
 }
