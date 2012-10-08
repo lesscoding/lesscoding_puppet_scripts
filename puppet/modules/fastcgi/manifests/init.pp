@@ -12,7 +12,7 @@ class fastcgi {
   }
 
   # add favicon
-  file { "/var/www/lesscoding_wp/favicon.ico":
+  file { "/var/www/lesscoding_wp/public_html/favicon.ico":
     owner => www-data,
     group => www-data,
     mode => 755,
