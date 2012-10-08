@@ -8,6 +8,8 @@ include firewall
 include users
 include newton
 
-include nginx
 include lesscoding
-
+include fastcgi
+# run nginx after starting fastcgi 
+# and any other services
+include nginx

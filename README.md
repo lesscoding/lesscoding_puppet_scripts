@@ -30,6 +30,15 @@ Start your Vagrant server:
 
 Script to:
 
+* fastCGI
+* PHP5
+* Wordpress
+* MySQL
+* Nagios
+* Varnish
+* log rotation
+
+
 
 <http://library.linode.com/securing-your-server>
   - remove ssh for root

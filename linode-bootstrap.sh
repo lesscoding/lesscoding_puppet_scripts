@@ -18,6 +18,9 @@ echo "****** Linking Ruby1.9.3..."
 sudo ln -sf /usr/bin/ruby1.9.3 /etc/alternatives/ruby
 sudo ln -sf /usr/bin/gem1.9.3 /etc/alternatives/gem
 
+# echo "****** Install vimben..."
+# curl -Lo- https://raw.github.com/emson/vimben/master/bootstrap.sh | bash
+
 # get the puppet scripts
 # TODO get these from github
 echo "****** Get puppet scripts..."

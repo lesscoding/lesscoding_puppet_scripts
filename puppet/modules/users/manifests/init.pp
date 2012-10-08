@@ -4,16 +4,16 @@ class users {
     ensure => 'present',
   }
 
-  group { "lesscoding":
+  group { "www-data":
     ensure => 'present',
   }
 
-  user { "lesscoding":
-     gid => 'lesscoding',
-     comment => 'The application user',
+  user { "www-data":
+     gid => 'www-data',
+     comment => 'The www-data web server user',
      managehome => 'false',
      ensure => 'present',
-     require => Group['lesscoding'],
+     require => Group['www-data'],
   }
 
   user { "emson":
@@ -40,7 +40,7 @@ class users {
     require => User['emson'],
   }
 
-  # install vimben
+  # TODO doesn't work: install vimben
   # exec {
   #   "vimben":
   #     command => 'curl -Lo- https://raw.github.com/emson/vimben/master/bootstrap.sh | bash | 0',

@@ -2,16 +2,16 @@ class lesscoding {
 
   file {
     ["/var/www/",
-     "/var/www/lesscoding-wp/",
      "/var/www/lesscoding/",
      "/var/www/lesscoding/current/",
      "/var/www/lesscoding/current/public/"]:
        ensure => directory,
-       owner => lesscoding,
-       group => lesscoding,
+       owner => www-data,
+       group => www-data,
        mode => 775,
   }
 
+  # add lesscoding Nginx config
   file { "/etc/nginx/sites-available/lesscoding.conf":
     owner   => root,
     group   => root,
