@@ -11,6 +11,14 @@ class fastcgi {
        mode => 775,
   }
 
+  # add favicon
+  file { "/var/www/lesscoding_wp/favicon.ico":
+    owner => www-data,
+    group => www-data,
+    mode => 755,
+    source  => "puppet:///modules/fastcgi/favicon.ico",
+  }
+
   # add lesscoding_wp Nginx config
   file { "/etc/nginx/sites-available/lesscoding_wp.conf":
     owner   => root,
