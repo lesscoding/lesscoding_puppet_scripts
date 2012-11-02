@@ -39,15 +39,13 @@ class mysql::server {
     "set_db_root_password":
       command => "sudo mysqladmin -u root -h localhost password '${root_db_password}'",
       unless => "mysql -uroot -p${root_db_password} -hlocalhost",
-      require => File['/tmp/create_database.sql'],
-      refreshonly => true;
+      require => File['/tmp/create_database.sql'];
 
     # create the wordpress database
     "create_db":
       command => "sudo mysql -u root -p${root_db_password} < /tmp/create_database.sql",
       unless => "mysql -u${db_user} -p${db_password} -D${db_name} -hlocalhost",
-      require => Exec['set_db_root_password'],
-      refreshonly => true;
+      require => Exec['set_db_root_password'];
 
     # clean up the create db file after creation
     "remove_sql_file":

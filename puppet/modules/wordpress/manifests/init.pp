@@ -2,7 +2,7 @@ class wordpress {
 
   $wordpress_archive = "wordpress-3.4.2.zip"
   $wordpress_dir     = "/var/www/lesscoding_wp/"
-  $wordpress_app_dir = "${wordpress_dir}wordpress/"
+  $wordpress_app_dir = "${wordpress_dir}blog/"
   $db_name           = "wp_lesscoding_com"
   $db_user           = "lesscodingdb"
   $db_password       = "apassword"
@@ -72,11 +72,17 @@ class wordpress {
       command      => "unzip -o\
       ${wordpress_dir}setup_files/${wordpress_archive}\
       -d ${wordpress_dir}",
-      #refreshonly  => true,
+      refreshonly  => true,
       require      => Package['unzip'],
       user  => www-data,
       group => www-data,
       path         => ['/bin','/usr/bin','/usr/sbin','/usr/local/bin'];
+
+    'wordpress_rename_dir':
+      command     => "sudo mv ${wordpress_dir}wordpress/* ${wordpress_app_dir}",
+      subscribe   => Exec['wordpress_extract_installer'],
+      refreshonly  => true,
+      before => Exec['wordpress_extract_themes'];
 
     'wordpress_extract_themes':
       command      => '/bin/sh -c \'for themeindex in `ls \
@@ -102,7 +108,7 @@ class wordpress {
 
     'wordpress_permissions':
       command     => "sudo chmod 775 ${wordpress_app_dir}*",
-      subscribe   => Exec['wordpress_extract_plugins'],
+      subscribe   => Exec['wordpress_rename_dir', 'wordpress_extract_plugins'],
   }
 
 }
