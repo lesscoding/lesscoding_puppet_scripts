@@ -2,9 +2,9 @@ class fastcgi {
 
   # set fastcgi user as www-data
   file {
-    ["/var/www/lesscoding_wp/",
-     "/var/www/lesscoding_wp/logs/",
-     "/var/www/lesscoding_wp/blog/" ]:
+    ["${app_dir}",
+     "${app_dir}logs/",
+     "${app_dir}blog/" ]:
        ensure => directory,
        owner => www-data,
        group => www-data,
@@ -13,7 +13,7 @@ class fastcgi {
   }
 
   # add favicon
-  file { "/var/www/lesscoding_wp/favicon.ico":
+  file { "${app_dir}favicon.ico":
     owner => www-data,
     group => www-data,
     mode => 755,
@@ -22,10 +22,11 @@ class fastcgi {
 
   # add lesscoding_wp Nginx config
   file { "/etc/nginx/sites-available/lesscoding_wp.conf":
+    ensure => file,
     owner   => root,
     group   => root,
     mode    => 644,
-    source  => "puppet:///modules/fastcgi/lesscoding_wp.conf",
+    content  => template("fastcgi/lesscoding_wp.conf.erb"),
     require => Package["nginx"],
   }
 
@@ -57,7 +58,7 @@ class fastcgi {
   # TODO remove this temporary content
   exec {
     "touch_test_php":
-      command => 'touch /var/www/lesscoding_wp/index.php; echo "<?php phpinfo(); ?>" > /var/www/lesscoding_wp/index.php',
+      command => "touch ${app_dir}index.php; echo '<?php phpinfo(); ?>' > ${app_dir}index.php",
       user => 'www-data',
       group => 'www-data',
       require => File['/etc/init.d/php-fastcgi'],
@@ -74,7 +75,6 @@ class fastcgi {
     enable => true,
     name => 'php-fastcgi',
     path => '/etc/init.d/',
-    require => Exec['touch_test_php'],
     subscribe => File['/usr/bin/php-fastcgi', '/etc/init.d/php-fastcgi', '/etc/nginx/sites-available/lesscoding_wp.conf'],
   }
 

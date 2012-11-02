@@ -1,10 +1,5 @@
 class mysql::server {
 
-  $root_db_password = "mypassword"
-  $db_name          = "wp_lesscoding_com"
-  $db_user          = "lesscodingdb"
-  $db_password      = "apassword"
-  
 	package { "php5-mysql":
 		ensure => installed,
 	}

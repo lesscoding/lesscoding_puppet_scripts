@@ -1,9 +1,9 @@
 
 server {
   server_name lesscoding.com;
-  access_log  /var/www/lesscoding_wp/logs/access.log;
-  error_log   /var/www/lesscoding_wp/logs/error.log;
-  root        /var/www/lesscoding_wp/;
+  access_log  <%= app_dir %>logs/access.log;
+  error_log   <%= app_dir %>logs/error.log;
+  root        <%= app_dir %>;
 
 
   location / {
@@ -19,7 +19,7 @@ server {
     # }
     fastcgi_pass unix:/var/run/php-fastcgi/php-fastcgi.socket;
     fastcgi_index index.php;
-    fastcgi_param SCRIPT_FILENAME /var/www/lesscoding_wp/$fastcgi_script_name;
+    fastcgi_param SCRIPT_FILENAME <%= app_dir %>$fastcgi_script_name;
   }
 
 }
