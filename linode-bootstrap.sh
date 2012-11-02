@@ -13,7 +13,8 @@ sudo apt-get upgrade -y --show-upgrade
 echo "****** Installing packages..."
 sudo apt-get install -y curl git-core libcurl4-gnutls-dev libreadline-dev libssl-dev libyaml-dev \
                         zlib1g-dev build-essential python-software-properties ruby1.9.3 rubygems \
-                        libmysqlclient-dev puppet php5-cli php5-cgi psmisc spawn-fcgi
+                        libmysqlclient-dev puppet php5-cli php5-cgi psmisc spawn-fcgi # \
+                        # mysql-server php5-mysql
 echo "****** Linking Ruby1.9.3..."
 sudo ln -sf /usr/bin/ruby1.9.3 /etc/alternatives/ruby
 sudo ln -sf /usr/bin/gem1.9.3 /etc/alternatives/gem
@@ -24,8 +25,8 @@ sudo ln -sf /usr/bin/gem1.9.3 /etc/alternatives/gem
 # get the puppet scripts
 # TODO get these from github
 echo "****** Get puppet scripts..."
-rm -rf /tmp/provision
-cd /tmp && git clone git://github.com/lesscoding/lesscoding_puppet_scripts.git provision
+# rm -rf /tmp/provision
+# cd /tmp && git clone git://github.com/lesscoding/lesscoding_puppet_scripts.git provision
 sudo cp -rf /tmp/provision/puppet /etc
 
 # run the puppet scripts

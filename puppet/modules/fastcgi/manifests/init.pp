@@ -4,15 +4,16 @@ class fastcgi {
   file {
     ["/var/www/lesscoding_wp/",
      "/var/www/lesscoding_wp/logs/",
-     "/var/www/lesscoding_wp/public_html/" ]:
+     "/var/www/lesscoding_wp/wordpress/" ]:
        ensure => directory,
        owner => www-data,
        group => www-data,
        mode => 775,
+       before  =>  File['wordpress_setup_files_dir'];
   }
 
   # add favicon
-  file { "/var/www/lesscoding_wp/public_html/favicon.ico":
+  file { "/var/www/lesscoding_wp/wordpress/favicon.ico":
     owner => www-data,
     group => www-data,
     mode => 755,
@@ -56,7 +57,7 @@ class fastcgi {
   # TODO remove this temporary content
   exec {
     "touch_test_php":
-      command => 'touch /var/www/lesscoding_wp/public_html/test.php; echo "<?php phpinfo(); ?>" > /var/www/lesscoding_wp/public_html/test.php',
+      command => 'touch /var/www/lesscoding_wp/wordpress/test.php; echo "<?php phpinfo(); ?>" > /var/www/lesscoding_wp/wordpress/test.php',
       user => 'www-data',
       group => 'www-data',
       require => File['/etc/init.d/php-fastcgi'],
@@ -74,6 +75,7 @@ class fastcgi {
     name => 'php-fastcgi',
     path => '/etc/init.d/',
     require => Exec['touch_test_php'],
+    subscribe => File['/usr/bin/php-fastcgi', '/etc/init.d/php-fastcgi', '/etc/nginx/sites-available/lesscoding_wp.conf'],
   }
 
 }

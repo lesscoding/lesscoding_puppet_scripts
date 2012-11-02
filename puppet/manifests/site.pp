@@ -13,3 +13,7 @@ include fastcgi
 # run nginx after starting fastcgi 
 # and any other services
 include nginx
+
+include mysql::server
+include wordpress
+

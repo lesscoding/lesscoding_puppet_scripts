@@ -28,5 +28,6 @@ class nginx {
     hasstatus => true,
     hasrestart => true,
     require => Service["php-fastcgi"],
+    subscribe => Service['php-fastcgi'],
   }
 }
