@@ -56,12 +56,12 @@ class fastcgi {
   }
 
   # TODO remove this temporary content
-  exec {
-    "touch_test_php":
-      command => "touch ${app_dir}index.php; echo '<?php phpinfo(); ?>' > ${app_dir}index.php",
-      user => 'www-data',
-      group => 'www-data',
-      require => File['/etc/init.d/php-fastcgi'],
+  file { "${app_dir}index.php":
+    owner   => 'www-data',
+    group   => 'www-data',
+    mode    => 755,
+    content  => "<?php phpinfo(); ?>",
+    require => File["/usr/bin/php-fastcgi"],
   }
 
   # TODO check running
