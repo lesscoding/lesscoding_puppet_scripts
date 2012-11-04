@@ -25,8 +25,8 @@ sudo ln -sf /usr/bin/gem1.9.3 /etc/alternatives/gem
 # get the puppet scripts
 # TODO get these from github
 echo "****** Get puppet scripts..."
-rm -rf /tmp/provision
-cd /tmp && git clone git://github.com/lesscoding/lesscoding_puppet_scripts.git provision
+# rm -rf /tmp/provision
+# cd /tmp && git clone git://github.com/lesscoding/lesscoding_puppet_scripts.git provision
 sudo cp -rf /tmp/provision/puppet /etc
 
 # run the puppet scripts
