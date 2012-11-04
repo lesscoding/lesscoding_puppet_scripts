@@ -20,6 +20,12 @@ Start your Vagrant server:
 
 <http://puppetlabs.com/blog/using-puppet-modules-to-install-and-manage-wordpress/>
 
+<http://blog.bigdinosaur.org/postfix-gmail-and-you/>
+
+<http://www.marksanborn.net/linux/send-mail-postfix-through-gmails-smtp-on-a-ubuntu-lts-server/>
+
+<http://codex.wordpress.org/Hardening_WordPress>
+
 
 #### Setup FastCGI First
 
