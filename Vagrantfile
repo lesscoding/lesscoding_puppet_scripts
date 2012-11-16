@@ -7,6 +7,7 @@ Vagrant::Config.run do |config|
   config.vm.customize ["modifyvm", :id, "--name", "newton", "--memory", "512"]
   # config.vm.boot_mode = :gui
   config.vm.box = "precise64_pre_puppet"
+  # config.vm.box = "precise64"
   config.vm.host_name = "newton"
   config.vm.forward_port 22, 2222, :auto => true
   config.vm.forward_port 80, 8080

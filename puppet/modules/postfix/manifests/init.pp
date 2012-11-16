@@ -29,7 +29,7 @@ class postfix {
     enable => true,
     ensure => running,
     hasstatus => true,
-    subscribe => file["/etc/postfix/main.cf"],
+    subscribe => File["/etc/postfix/main.cf"],
   }
 
 }
