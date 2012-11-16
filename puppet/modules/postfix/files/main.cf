@@ -1,88 +1,16 @@
-# See /usr/share/postfix/main.cf.dist for a commented, more complete version
-
-
-# Debian specific:  Specifying a file name will cause the first
-# line of that file to be used as the name.  The Debian default
-# is /etc/mailname.
-myorigin = /etc/mailname
-
-smtpd_banner = $myhostname ESMTP $mail_name (Ubuntu)
-biff = no
-
-# appending .domain is the MUA's job.
-append_dot_mydomain = no
-
-# Uncomment the next line to generate "delayed mail" warnings
-#delay_warning_time = 4h
-
-readme_directory = no
-
-# TLS parameters
-## The certificate authority file below is in the default location for Ubuntu,
-## and is used by Postfix to validate the CA used by Google's mail servers
-## for when Postfix talks to them to send mail
-smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
-smtp_use_tls = yes
-smtp_tls_session_cache_database = btree:${data_directory}/smtp_scache
-smtp_tls_note_starttls_offer = yes
-tls_random_source = dev:/dev/urandom
-
-# TLS server parameters
-## optional!
-## This section is necessary if you're going to be using your Postfix install
-## to relay from other LAN hosts
-#smtpd_use_tls = yes
-#smtpd_tls_cert_file = /path/to/your/certificate.crt
-#smtpd_tls_key_file = /path/to/your/private.key
-#smtpd_tls_CAfile = /path/to/your/ca-file-or-bundle.pem
-#smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
-#smtpd_tls_loglevel = 1
-#smtpd_tls_received_header = yes
-#smtpd_tls_session_cache_timeout = 3600s
-#smtpd_tls_req_ccert = no
-#smtpd_tls_ask_ccert = yes
-
-
-# See /usr/share/doc/postfix/TLS_README.gz in the postfix-doc package for
-# information on enabling SSL in the smtp client.
-
-myhostname = lesscoding.com
-alias_maps = hash:/etc/aliases
-alias_database = hash:/etc/aliases
-myorigin = /etc/mailname
-
-## Next line tells Postfix the destinations where it will send mail directly
-## instead of relaying, so that you can use Postfix to send mail to and
-## from your local root account, for example.
-mydestination = lesscoding.com, newton, localhost.localdomain, localhost
-
-## Tells Postfix which host to use when relaying mail. Google's SMTP server
-## name goes here, along with the correct SMTP port.
+# Set the relayhost to the Gmail Server.  Replace with your SMTP server as needed
 relayhost = [smtp.gmail.com]:587
-relay_transport = relay
-relay_destination_concurrency_limit = 1
+# Postfix 2.2 uses the generic(5) address mapping to replace local fantasy email
+# addresses by valid Internet addresses. This mapping happens ONLY when mail
+# leaves the machine; not when you send mail between users on the same machine.
+smtp_generic_maps = hash:/etc/postfix/generic
 
-## These settings tell Postfix where to find the username and password to use
-## when relaying e-mail through the server set in the relayhost directive above
-smtp_sasl_auth_enable = yes
-smtp_sasl_password_maps = hash:/etc/postfix/sasl/passwd
+# These settings (along with the relayhost setting above) will make
+# postfix relay all outbound non-local email via Gmail using an
+# authenticated TLS/SASL session.
+smtp_tls_loglevel=1
+smtp_tls_security_level=encrypt
+smtp_sasl_auth_enable=yes
+smtp_sasl_password_maps=hash:/etc/postfix/sasl/passwd
 smtp_sasl_security_options = noanonymous
-smtp_sasl_tls_security_options = noanonymous
-smtp_connection_cache_destinations = smtp.gmail.com
-
-## Next line tells Postfix what networks it can trust. Any address or
-## block of addresses listed here will be allowed to relay e-mail through
-## this Postfix server and on to Google Apps. Handy if you've got a printer
-## or other device that can send e-mail!
-mynetworks = 127.0.0.0/8 [::ffff:127.0.0.0]/104 [::1]/128
-
-mailbox_size_limit = 0
-recipient_delimiter = +
-inet_interfaces = all
-default_transport = smtp
-default_destination_concurrency_limit = 5
-
-# configures postfix for virtual hosting
-virtual_alias_maps = hash:/etc/postfix/virtual
-home_mailbox = mail/
 
