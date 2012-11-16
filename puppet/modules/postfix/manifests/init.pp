@@ -6,17 +6,28 @@ class postfix {
       ensure  => installed,
   }
 
-  # TODO this should be a template with password vars
   file {
   '/etc/postfix/sasl/passwd':
-    source => "puppet:///modules/postfix/passwd",
+    content => template"postfix/passwd.erb",
+    require => Package['postfix'],
+  }
+
+  file {
+  '/etc/postfix/generic':
+    content => template"postfix/generic.erb",
     require => Package['postfix'],
   }
 
   exec {
-    'postfix_mapping':
+    'postfix_mapping_passwd':
     command => "sudo postmap /etc/postfix/sasl/passwd",
     subscribe => File['/etc/postfix/sasl/passwd'],
+  }
+
+  exec {
+    'postfix_mapping_generic':
+    command => "sudo postmap /etc/postfix/generic",
+    subscribe => File['/etc/postfix/generic'],
   }
 
   file {

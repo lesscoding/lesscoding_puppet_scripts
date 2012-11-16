@@ -7,6 +7,8 @@ $root_db_password = "mypassword"
 $db_name          = "wp_lesscoding_com"
 $db_user          = "lesscodingdb"
 $db_password      = "apassword"
+$email_account    = "ben@lesscoding.com"
+$email_password   = "email_password"
 
 include timezone
 include ntp
@@ -14,7 +16,7 @@ include firewall
 include users
 include newton
 
-# include postfix
+include postfix
 include lesscoding
 include fastcgi
 # run nginx after starting fastcgi 
