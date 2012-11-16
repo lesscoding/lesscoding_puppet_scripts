@@ -39,7 +39,11 @@ class postfix {
     enable => true,
     ensure => running,
     hasstatus => true,
-    subscribe => File["/etc/postfix/main.cf"],
+    subscribe => [
+      File["/etc/postfix/main.cf"], 
+      Exec["postfix_mapping_passwd"],
+      Exec["postfix_mapping_generic"]
+    ],
   }
 
 }
