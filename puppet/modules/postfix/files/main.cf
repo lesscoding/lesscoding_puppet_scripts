@@ -9,7 +9,13 @@ smtp_generic_maps = hash:/etc/postfix/generic
 # postfix relay all outbound non-local email via Gmail using an
 # authenticated TLS/SASL session.
 smtp_tls_loglevel=1
-smtp_tls_security_level=encrypt
+smtp_tls_security_level = secure
+smtp_tls_mandatory_protocols = TLSv1
+smtp_tls_mandatory_ciphers = high
+smtp_tls_secure_cert_match = nexthop
+# add a self signed cert to prevent GMail verification errors
+smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt
+
 smtp_sasl_auth_enable=yes
 smtp_sasl_password_maps=hash:/etc/postfix/sasl/passwd
 smtp_sasl_security_options = noanonymous

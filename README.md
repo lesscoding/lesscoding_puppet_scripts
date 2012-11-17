@@ -32,6 +32,10 @@ GMail](http://support.google.com/a/bin/answer.py?hl=en&answer=140034)
 [GMail MX record
 values](http://support.google.com/a/bin/answer.py?hl=en&answer=174125)
 
+Logs are located: `tail -f /var/log/mail.log`
+
+Setup a GMail SMTP relay
+
 
 ## Wordpress
 
@@ -44,7 +48,7 @@ values](http://support.google.com/a/bin/answer.py?hl=en&answer=174125)
 <http://evansolomon.me/notes/faster-wordpress-multisite-nginx-batcache/>
 
 
-#### Setup FastCGI First
+## Setup FastCGI First
 
 <http://library.linode.com/web-servers/nginx/php-fastcgi/ubuntu-11.04-natty>
 
