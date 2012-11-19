@@ -1,0 +1,9 @@
+
+app_dir, "/var/app/my_app_dir/"
+root_db_password, "root_db_password"
+db_name, "wordpress_db_name"
+db_user, "db_user"
+db_password, "db_password"
+email_account, "my_name@somewhere.com"
+email_password, "email_password"
+
